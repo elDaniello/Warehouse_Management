@@ -10,7 +10,16 @@
 			"name": "get items",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/items",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items"
+					]
+				}
 			},
 			"response": []
 		},
@@ -21,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml puszka\",\r\n    \"location\": \"P4 R69 L1488\",\r\n    \"quantity\": 0\r\n}",
+					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml\",\r\n    \"location\": \"P4 R20 L2137\",\r\n    \"quantity\": 24\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,13 +55,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_url}}/items/11",
+					"raw": "{{api_url}}/items/1",
 					"host": [
 						"{{api_url}}"
 					],
 					"path": [
 						"items",
-						"11"
+						"1"
 					]
 				}
 			},
@@ -65,7 +74,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"content\": \"NEWNEW\",\r\n    \"title\": \"NEWtitle\"\r\n}",
+					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml puszka\",\r\n    \"location\": \"P4 R69 L1488\",\r\n    \"quantity\": 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,8 +97,18 @@
 		{
 			"name": "delete item",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/items/1",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items",
+						"1"
+					]
+				}
 			},
 			"response": []
 		}
