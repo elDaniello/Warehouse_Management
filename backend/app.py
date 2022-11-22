@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import NoResultFound
 import os
+import sys 
 
 app = Flask(__name__)
 
@@ -39,6 +41,19 @@ def get_items():
         del item.__dict__['_sa_instance_state']
         items.append(item.__dict__)
     return jsonify(items)
+
+@app.route('/items-by-ean/<ean>', methods=['GET'])
+def get_items_by_ean(ean):
+    print(ean, file=sys.stderr)
+#    for item in db.session.query(Item).filter(Item.ean == ean):
+#      print(item, file=sys.stderr)
+    try:
+      item = db.session.query(Item).filter(Item.ean == ean).one()
+    except NoResultFound:
+      abort(404)
+    del item.__dict__['_sa_instance_state']
+    return jsonify(item.__dict__)
+
 
 @app.route('/items', methods=['POST'])
 def create_item():

@@ -111,6 +111,24 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get item by ean",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/items-by-ean/5900014002180",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items-by-ean",
+						"5900014002180"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
