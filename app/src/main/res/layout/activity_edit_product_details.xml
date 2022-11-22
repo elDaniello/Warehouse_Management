@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".EditProductDetailsActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/productIdView"
+            android:id="@+id/productIdViewEdit"
             android:layout_width="283dp"
             android:layout_height="37dp"
             android:layout_marginStart="50dp"
@@ -27,19 +27,22 @@
             android:textAlignment="viewStart"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/productView"
+        <EditText
+            android:id="@+id/typeProductName"
             android:layout_width="283dp"
             android:layout_height="43dp"
             android:layout_marginStart="50dp"
+            android:hint="@string/prodcut_name"
             android:text="@string/prodcut_name"
+            android:inputType="text"
             android:textAlignment="viewStart"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:autofillHints=""/>
 
     </LinearLayout>
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/tableLayoutEdit"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="32dp"
@@ -48,41 +51,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutEdit"
         app:layout_constraintVertical_bias="0.0">
 
 
         <TableRow
-            android:id="@+id/firstRow"
+            android:id="@+id/secondRowEdit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/statusLabelView"
-                android:layout_width="160dp"
-                android:layout_height="match_parent"
-                android:padding="18dip"
-                android:text="@string/status"
-                android:textAlignment="center"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/statusView"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="@string/status_of_the_product"
-                android:textSize="14sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/secondRow"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/locationLabelView"
+                android:id="@+id/locationLabelViewEdit"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:padding="18dip"
@@ -90,23 +69,26 @@
                 android:textAlignment="center"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/locationView"
+            <EditText
+                android:id="@+id/typeLocation"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:hint="@string/location_of_the_product"
+                android:inputType="text"
                 android:padding="18dip"
                 android:text="@string/location_of_the_product"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:autofillHints="" />
 
         </TableRow>
 
         <TableRow
-            android:id="@+id/thirdRow"
+            android:id="@+id/thirdRowEdit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/amountLabelView"
+                android:id="@+id/amountLabelViewEdit"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:padding="18dip"
@@ -114,13 +96,16 @@
                 android:textAlignment="center"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/amountView"
+            <EditText
+                android:id="@+id/typeAmount"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:hint="@string/amount_of_the_product"
+                android:inputType="numberSigned|numberDecimal"
                 android:padding="18dip"
                 android:text="@string/amount_of_the_product"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:autofillHints="" />
 
         </TableRow>
 
@@ -129,31 +114,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="100dp"
         android:gravity="center"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayoutEdit"
         tools:ignore="MissingConstraints">
 
         <Button
-            android:id="@+id/editButton"
+            android:id="@+id/saveButton"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="@string/edit" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/save" />
 
         <Button
-            android:id="@+id/orderButton"
+            android:id="@+id/cancelButton"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="@string/order" />
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/cancel" />
 
     </LinearLayout>
 
