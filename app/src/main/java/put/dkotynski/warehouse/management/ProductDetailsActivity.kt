@@ -1,9 +1,9 @@
 package put.dkotynski.warehouse.management
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -16,6 +16,10 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         editButton.setOnClickListener() {
             Toast.makeText(applicationContext, "Edit button clicked", Toast.LENGTH_LONG).show()
+
+            val intent = Intent(this, EditProductDetailsActivity::class.java)
+            this.onPause()
+            startActivity(intent)
         }
 
         orderButton.setOnClickListener(){

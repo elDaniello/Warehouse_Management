@@ -31,4 +31,6 @@
     <string name="amount_of_the_product">(product amount)</string>
     <string name="edit">edit data</string>
     <string name="order">order product</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
