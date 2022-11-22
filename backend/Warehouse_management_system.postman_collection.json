@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "eefb444c-e2a9-42e5-a5d3-b34e30d26b74",
+		"name": "Warehouse management system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18511940"
+	},
+	"item": [
+		{
+			"name": "get items",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "add item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml puszka\",\r\n    \"location\": \"P4 R69 L1488\",\r\n    \"quantity\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/items",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/items/11",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"content\": \"NEWNEW\",\r\n    \"title\": \"NEWtitle\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/items/1",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete item",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "http://localhost:80",
+			"type": "string"
+		}
+	]
+}
