@@ -1,3 +1,11 @@
 flask
 psycopg2-binary
 Flask-SQLAlchemy
+flask-restful
+flask-sqlalchemy
+flask-cors
+flask-jwt-extended
+requests
+pyjwt
+uuid
+Flask-Migrate
