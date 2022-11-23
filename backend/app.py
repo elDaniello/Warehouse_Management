@@ -97,14 +97,15 @@ def check_if_logged_in():
 
 
 @app.route('/items/<it_id>', methods=['GET'])
-
 def get_item(it_id):
+    check_if_logged_in()
     item = Item.query.get(it_id)
     del item.__dict__['_sa_instance_state']
     return jsonify(item.__dict__)
 
 @app.route('/items', methods=['GET'])
 def get_items():
+    check_if_logged_in()
     items = []
     for item in db.session.query(Item).all():
         del item.__dict__['_sa_instance_state']
@@ -113,6 +114,7 @@ def get_items():
 
 @app.route('/items-by-ean/<ean>', methods=['GET'])
 def get_items_by_ean(ean):
+    check_if_logged_in()
     print(ean, file=sys.stderr)
 
     try:
@@ -125,6 +127,7 @@ def get_items_by_ean(ean):
 
 @app.route('/items', methods=['POST'])
 def create_item():
+  check_if_logged_in()  
   body = request.get_json()
   db.session.add(Item(ean=body['ean'], name=body['name'], location=body['location'], quantity=body['quantity']))
   db.session.commit()
@@ -132,6 +135,7 @@ def create_item():
 
 @app.route('/items/<id>', methods=['PUT'])
 def update_item(id):
+  check_if_logged_in()
   body = request.get_json()
   db.session.query(Item).filter_by(id=id).update(
       #ean, name, location, quantity
@@ -141,6 +145,7 @@ def update_item(id):
 
 @app.route('/items/<id>', methods=['DELETE'])
 def delete_item(id):
+  check_if_logged_in()
   db.session.query(Item).filter_by(id=id).delete()
   db.session.commit()
   return "item deleted"
