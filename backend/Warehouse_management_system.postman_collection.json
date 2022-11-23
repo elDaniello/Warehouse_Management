@@ -10,7 +10,13 @@
 			"name": "get items",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{api_url}}/items",
 					"host": [
@@ -27,10 +33,16 @@
 			"name": "add item",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml\",\r\n    \"location\": \"P4 R20 L2137\",\r\n    \"quantity\": 24\r\n}",
+					"raw": "{\r\n    \"ean\": \"590001400101123123\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml\",\r\n    \"location\": \"P4 R20 L2137\",\r\n    \"quantity\": 24\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -52,16 +64,32 @@
 		{
 			"name": "get one item",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{api_url}}/items/1",
+					"raw": "{{api_url}}/items/3",
 					"host": [
 						"{{api_url}}"
 					],
 					"path": [
 						"items",
-						"1"
+						"3"
 					]
 				}
 			},
@@ -70,8 +98,17 @@
 		{
 			"name": "update item",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"ean\": \"5900014002180\",\r\n    \"name\": \"piwko harnas jasne pelne 500ml puszka\",\r\n    \"location\": \"P4 R69 L1488\",\r\n    \"quantity\": 0\r\n}",
@@ -98,7 +135,13 @@
 			"name": "delete item",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{api_url}}/items/1",
 					"host": [
@@ -116,15 +159,73 @@
 			"name": "get item by ean",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI5YWY0NzJiZC1iMjk1LTQ2OTUtOWZkYi1mYTBlMWFlZmJjNDQifQ.jpS1kjEUnKQDTxpmW4fFPQruz5M5O18zuMSMOa39VrI",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{api_url}}/items-by-ean/5900014002180",
+					"raw": "{{api_url}}/items-by-ean/590001400101123123",
 					"host": [
 						"{{api_url}}"
 					],
 					"path": [
 						"items-by-ean",
-						"5900014002180"
+						"590001400101123123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"dupek123456\",\r\n    \"password\": \"qwerty\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/signup",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"dupek123456\",\r\n    \"password\": \"qwerty\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/login",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"login"
 					]
 				}
 			},
