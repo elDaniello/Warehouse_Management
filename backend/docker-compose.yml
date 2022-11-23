@@ -9,6 +9,7 @@ services:
       - "80:80"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - SECRET_KEY=dupa123321
     depends_on:
       - db
   
