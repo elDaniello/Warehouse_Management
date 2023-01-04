@@ -8,15 +8,20 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 
+@Serializable
+data class MyItem(val ean: String, val id: Int, val name: String, val location: String, val quantity: Int)
 
 class ProductDetailsActivity : AppCompatActivity() {
-    private val apiURL = "http://localhost:54321"
+    private val apiURL = "http://10.0.2.2:80"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +56,19 @@ class ProductDetailsActivity : AppCompatActivity() {
         val amount = amountView.text.toString().toInt()
         val location = locationView.text.toString()
 
-//        MainScope().launch {
-//            val client = OkHttpClient()
-//
-//            val request: Request = Request.Builder()
-//                .url("$apiURL/item/$productId")
-//                .build()
-//            val response: Response = client.newCall(request).execute()
-//            println(response.body)
-//        }
+        MainScope().launch {
+            val client = OkHttpClient()
+
+            val request: Request = Request.Builder()
+                .url("$apiURL/item/$productId")
+                .build()
+            val response: Response = client.newCall(request).execute()
+            println(response.body)
+            val gson = Gson()
+
+            var item = gson.fromJson(response.body?.string(), MyItem::class.java)
+            println(item)
+        }
 
         editButton.setOnClickListener() {
             Toast.makeText(applicationContext, "Edit button clicked", Toast.LENGTH_LONG).show()

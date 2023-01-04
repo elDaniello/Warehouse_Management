@@ -10,14 +10,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.util.Assert
+import com.google.gson.Gson
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import okhttp3.*
 import java.io.IOException
 import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
-    private val apiURL = "http://localhost:80"
+    private val apiURL = "http://10.0.2.2:80"
     private val client = OkHttpClient()
+
+
+    data class MyItem(val ean: String, val id: Int, val name: String, val location: String, val quantity: Int)
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +50,15 @@ class MainActivity : AppCompatActivity() {
 
             if(inputTypeID.length() > 0){
                 val id = inputTypeID.text.toString()
-                run(id)
+                MainScope().launch {
+
+                    val request = Request.Builder()
+                        .url("$apiURL/items/$id")
+
+                        .build()
+
+                    val response = client.newCall(request).execute();
+
 //                MainScope().launch {
 //                    val request: Request = Request.Builder()
 //                        .url("$apiURL/item/$id")
@@ -55,10 +70,32 @@ class MainActivity : AppCompatActivity() {
 //                val searchingProduct = input.text.toString()
 //                searchButton.isEnabled
 
-                val intent = Intent(this, ProductDetailsActivity::class.java)
-                intent.putExtra("id", id)
-                this.onPause()
-                startActivity(intent)
+
+
+                    if (response.code==200)
+                    {
+                        print(response)
+                        val intent = Intent(this@MainActivity, ProductDetailsActivity::class.java)
+                        intent.putExtra("id", id)
+//                        this@MainActivity.onPause()
+                        val gson = Gson()
+                        var item = gson.fromJson(response.body?.string(), MyItem::class.java)
+//                        Assert. assertEquals(item.id, 1)
+//                        Assert.assertEquals(item.ean, "5900014002180")
+//                        Assert.assertEquals(item.name, "piwko harnas jasne pelne 500ml puszka")
+//                        Assert.assertEquals(item.location, "P4 R69 L1488")
+//                        Assert.assertEquals(item.quantity, 0)
+//                        intent.putExtra("" ) //TODO
+
+                        println(item)
+                        print(response)
+                        this@MainActivity.onPause()
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(applicationContext, "Server error", Toast.LENGTH_LONG).show()
+                    }
+                }
             } else {
                 Toast.makeText(applicationContext, "You have to type product ID", Toast.LENGTH_LONG).show()
             }
@@ -71,29 +108,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun run(id: String) {
-        val request = Request.Builder()
-            .url("$apiURL/items/$id")
-            .build()
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                response.use {
-                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
-
-//                    for ((name, location) in response.headers) {
-//                        println("$name: $location")
-//                    }
-//
-//                    println(response.body!!.string())
-                }
-            }
-        })
     }
-}
+    }
+
 
 
 
