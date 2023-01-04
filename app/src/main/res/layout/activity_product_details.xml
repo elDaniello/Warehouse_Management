@@ -150,10 +150,10 @@
             android:layout_height="20dp" />
 
         <Button
-            android:id="@+id/orderButton"
+            android:id="@+id/backToSearchButton"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="@string/order" />
+            android:text="@string/backToSearch" />
 
     </LinearLayout>
 

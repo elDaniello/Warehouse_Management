@@ -2,7 +2,6 @@ package put.dkotynski.warehouse.management
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.LocusId
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
@@ -10,13 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.util.Assert
 import com.google.gson.Gson
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import okhttp3.*
-import java.io.IOException
-import java.net.URL
+import put.dkotynski.warehouse.management.ui.login.LoginActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val searchButton = findViewById<Button>(R.id.searchButton)
-        val generatingButton = findViewById<Button>(R.id.generatingButton)
+        val generatingButton = findViewById<Button>(R.id.logoutButton)
         val inputTypeID = findViewById<EditText>(R.id.typeID)
 
 //        TODO() disabling and enabling searching Button
@@ -46,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
         searchButton.setOnClickListener(){
-            Toast.makeText(applicationContext, "Search button clicked", Toast.LENGTH_LONG).show()
+//            Toast.makeText(applicationContext, "Search button clicked", Toast.LENGTH_LONG).show()
 
             if(inputTypeID.length() > 0){
                 val id = inputTypeID.text.toString()
@@ -59,19 +56,6 @@ class MainActivity : AppCompatActivity() {
 
                     val response = client.newCall(request).execute();
 
-//                MainScope().launch {
-//                    val request: Request = Request.Builder()
-//                        .url("$apiURL/item/$id")
-//                        .build()
-//
-//                    val call: Call = client.newCall(request)
-//                    val response: Response = call.execute()
-//                }
-//                val searchingProduct = input.text.toString()
-//                searchButton.isEnabled
-
-
-
                     if (response.code==200)
                     {
                         print(response)
@@ -80,12 +64,10 @@ class MainActivity : AppCompatActivity() {
 //                        this@MainActivity.onPause()
                         val gson = Gson()
                         var item = gson.fromJson(response.body?.string(), MyItem::class.java)
-//                        Assert. assertEquals(item.id, 1)
-//                        Assert.assertEquals(item.ean, "5900014002180")
-//                        Assert.assertEquals(item.name, "piwko harnas jasne pelne 500ml puszka")
-//                        Assert.assertEquals(item.location, "P4 R69 L1488")
-//                        Assert.assertEquals(item.quantity, 0)
-//                        intent.putExtra("" ) //TODO
+                        intent.putExtra("ean", item.ean )
+                        intent.putExtra("location", item.location )
+                        intent.putExtra("name", item.name )
+                        intent.putExtra("quantity", item.quantity )
 
                         println(item)
                         print(response)
@@ -102,7 +84,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         generatingButton.setOnClickListener(){
-            Toast.makeText(applicationContext, "Generate button clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "You've been log out", Toast.LENGTH_LONG).show()
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            this@MainActivity.onPause()
+            startActivity(intent)
         }
 
     }

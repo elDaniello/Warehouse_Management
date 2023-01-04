@@ -109,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
         // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "$welcome",
             Toast.LENGTH_LONG
         ).show()
     }

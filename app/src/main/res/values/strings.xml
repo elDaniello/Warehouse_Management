@@ -34,4 +34,6 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="_5">5</string>
+    <string name="backToSearch">Search Product</string>
+    <string name="logout">Log out</string>
 </resources>
